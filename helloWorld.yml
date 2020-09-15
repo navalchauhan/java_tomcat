@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: tomcatdeployment
   labels:
-    env: dev
+    env: prod
 spec:
   selector:
     matchLabels:
@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 8080
       nodeSelector:
-        env: dev
+        env: prod
         
 ---
 apiVersion: v1
