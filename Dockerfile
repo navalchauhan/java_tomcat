@@ -1,6 +1,6 @@
 FROM dhire/tomcat
 WORKDIR /opt/tomcat/webapps
-COPY target/java-tomcat-maven-example.tar .
+COPY target/java-tomcat-maven-example.war .
 
 EXPOSE 8080
 
