@@ -18,7 +18,7 @@ spec:
       - name: tomcat
         image: dhire/java_tomcat
         ports:
-        - containerPort: 80
+        - containerPort: 8080
       nodeSelector:
         env: dev
         
@@ -30,7 +30,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
   selector:
     app: tomcatapp
