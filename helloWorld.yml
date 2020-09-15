@@ -1,33 +1,36 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  name: tomcatDeployment
   labels:
-    name: helloWorld
     env: dev
 spec:
+  selector:
+    matchLabels:
+      app: tomcatapp
   replicas: 1
   template:
     metadata:
       labels:
-        name: helloWorld
+        app: tomcatapp
     spec:
       containers:
-      - image: dhire/java_tomcat
-        name: helloWorld
+      - name: tomcat
+        image: dhire/java_tomcat
         ports:
-        - name: helloWorld
-          containerPort: 80
-----
-#Node Port Service
+        - containerPort: 80
+      nodeSelector:
+        env: dev
+        
+---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    name: helloWorld
+  name: tomcatapp
 spec:
   type: NodePort
   ports:
-    - port:80
+    - port: 80
       targetPort: 80
   selector:
-    name:
+    app: tomcatapp
