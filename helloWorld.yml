@@ -19,6 +19,7 @@ spec:
         image: dhire/java_tomcat
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
       nodeSelector:
         env: prod
         
