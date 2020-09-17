@@ -20,7 +20,6 @@ spec:
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
-        restartPolicy: OnFailure
       nodeSelector:
         env: prod
         
