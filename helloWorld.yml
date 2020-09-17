@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: tomcatdeployment1
+  name: tomcatdeployment
   labels:
     env: prod
 spec:
@@ -35,3 +35,9 @@ spec:
       targetPort: 8080
   selector:
     app: tomcatapp
+    
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcatPod
