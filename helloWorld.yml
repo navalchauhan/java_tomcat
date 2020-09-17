@@ -36,11 +36,3 @@ spec:
   selector:
     app: tomcatapp
     
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: tomcatpod
-spec:
-  containers:
-  - name: tomcat
