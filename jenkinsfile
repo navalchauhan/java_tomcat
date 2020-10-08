@@ -1,0 +1,40 @@
+pipeline
+	agent any
+	tools {
+		maven 'Maven-3.6.3'
+	}
+	environment {
+		*CODE_VERSION = "FROM POM.XML"
+	
+	}
+	parameters {
+		choice (name: 'ENVIRONMENT', choices['Dev','Stage','PreProd','Prod'], description: 'Environment where the pipeline needs to eb deployed')
+	}
+	stages {
+		stage("Git_Clone"){
+			steps {
+				git credentialsId: 'Git_Credentials', url: 'https://github.com/ddhire/java_tomcat.git'
+				 }
+			}		
+	stage("Maven Clean Build"){
+		steps {	
+			def mavenHome = tool name:"Maven-3.6.3", type: "maven"
+			def mavenCMD = "${mavenHome}/bin/mvn"
+			sh "${mavenCMD} clean package"
+			}	
+		}
+    stage("Build Docker Image"){
+		steps {	
+			sh "sudo docker build -t ddhire/java_tomcat ."
+			}	
+		}
+    stage("Docker Image Push"){
+		steps {
+			withCredentials([string(credentialsId: 'Docker_Hub_Credentials', variable: 'Docker_Hub_Credentials')]) {
+			sh "sudo docker login -u dhire -p ${Docker_Hub_Credentials}"
+			}
+			sh "sudo docker tag ddhire/java_tomcat dhire/java_tomcat:latest"
+			sh 'sudo docker push dhire/java_tomcat'
+			}		
+		}		
+	}
