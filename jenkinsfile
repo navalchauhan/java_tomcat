@@ -36,5 +36,11 @@ pipeline
 			sh "sudo docker tag ddhire/java_tomcat dhire/java_tomcat:latest"
 			sh 'sudo docker push dhire/java_tomcat'
 			}		
-		}		
+		}
+	stage("Deploy Image to Dev"){
+		steps {		
+				sh "sudo kubectl apply -f helloWorld.yml"
+				sh "sudo kubectl delete pods -l app=tomcatapp" 
+			}
+		}
 	}
