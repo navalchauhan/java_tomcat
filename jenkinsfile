@@ -4,7 +4,7 @@ pipeline
 		maven 'Maven-3.6.3'
 	}
 	environment {
-		*CODE_VERSION = "FROM POM.XML"
+		//*CODE_VERSION = "FROM POM.XML"
 	
 	}
 	parameters {
