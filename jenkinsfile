@@ -41,7 +41,7 @@ pipeline
 		steps {		
 				sh "sudo kubectl apply -f helloWorld.yml"
 				sh "sudo kubectl delete pods -l app=tomcatapp" 
-				echo "File updated" 
+				echo "File updated @ 10:51 AM" 
 			}
 		}
 	}
