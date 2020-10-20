@@ -17,8 +17,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: tomcat
-        image: dhire/java_tomcat:latest
-        imagePullPolicy: "Always"
+        image: dhire/java_tomcat
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
